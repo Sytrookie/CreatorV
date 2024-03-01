@@ -40,4 +40,5 @@ luac.out
 *.hex
 
 # FXServer directory
-/FXServer/
+/FXServer/*
+!/FXServer/hello.txt
