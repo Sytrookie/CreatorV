@@ -1,3 +1,5 @@
+local weapon_hashtable = require 'data.weapon_hashtable'
+
 local commands = {}
 
 local commandsItems = {}
@@ -85,6 +87,14 @@ lib.callback.register('basic:commands:coords', function()
     }, {})
     
     return vec
+end)
+
+lib.callback.register('basic:commands:weap_all', function()
+    for name, hash in pairs(weapon_hashtable) do
+        print(name, hash)
+        GiveWeaponToPed(cache.ped, hash, 999, false, true)
+        Wait(10)
+    end
 end)
 
 lib.addRadialItem({

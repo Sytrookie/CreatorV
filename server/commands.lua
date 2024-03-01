@@ -63,6 +63,16 @@ commands[#commands+1] = {
     end,
 }
 
+commands[#commands+1] = {
+    command = 'weap_all',
+    help = 'Gives all weapons',
+    func = function(source, args, raw)
+        lib.callback('basic:commands:weap_all', source, function()
+            print(source, GetPlayerName(source), 'weap_all')
+        end)
+    end,
+}
+
 for i = 1, #commands do
     local command = commands[i]
     lib.addCommand(command.command, {

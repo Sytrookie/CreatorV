@@ -6,7 +6,15 @@ local peds = {
 
 function spawn(vec)
 
+
     local spawn = vec or vec4(41.889, -1146.994, 29.189, 330.863)
+
+    print(spawn)
+
+    if IsEntityDead(cache.ped) then
+        NetworkResurrectLocalPlayer(spawn.x , spawn.y, spawn.z, true, true, false)
+    end
+
 
     FreezeEntityPosition(cache.ped, true)
 
@@ -33,45 +41,28 @@ function spawn(vec)
     FreezeEntityPosition(cache.ped, false)
 
     TriggerEvent('playerSpawned', spawn)
-
-    -- Get the player ped
-    local playerPed = PlayerPedId()
-
-    -- List of all weapon hashes
-    local weapons = {
-        "WEAPON_KNIFE",
-        "WEAPON_NIGHTSTICK",
-        "WEAPON_HAMMER",
-        "WEAPON_BAT",
-        "WEAPON_GOLFCLUB",
-        -- Add all other weapon hashes here
-    }
-
-    -- Give all weapons to the player ped
-    for i, weapon in ipairs(weapons) do
-        GiveWeaponToPed(playerPed, GetHashKey(weapon), 999, false, false)
-    end
 end
 
 AddEventHandler('playerSpawned', function(spawn)
     TriggerServerEvent('basic:commands:playerSpawned')
 end)
 
-CreateThread(function()
+SetTimeout(500, function()
     spawn()
+    LocalPlayer.state:set('basic:died', false, true)
     while true do
-        Wait(50)
+        Wait(1000)
         if cache.ped then
-            if (diedAt and (GetTimeDifference(GetGameTimer(), diedAt) > 2000)) or respawnForced then
+            print(LocalPlayer.state['basic:died'] and GetCloudTimeAsInt() - tonumber(LocalPlayer.state['basic:died']))
+            if (LocalPlayer.state['basic:died'] and (GetCloudTimeAsInt() - LocalPlayer.state['basic:died'] > 2)) or respawnForced then
                 local coords = GetEntityCoords(cache.ped)
                 local heading = GetEntityHeading(cache.ped)
                 spawn(vec4(coords.x, coords.y, coords.z, heading))
+                LocalPlayer.state:set('basic:died', false, true)
             end
 
-            if IsEntityDead(cache.ped) then
-                diedAt = GetGameTimer()
-            else
-                diedAt = nil
+            if (IsPlayerDead(PlayerId()) or IsEntityDead(cache.ped)) and not LocalPlayer.state['basic:died'] then
+                LocalPlayer.state:set('basic:died', GetCloudTimeAsInt(), true)
             end
         end
     end
