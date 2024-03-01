@@ -22,10 +22,7 @@ commands[#commands+1] = {
         lib.callback('basic:commands:spawnVehicle', source, function(veh, net)
             print(source, GetPlayerName(source), 'spawn vehicle')
             if veh then
-                SetVehicleNumberPlateText(veh, 'VELOCITY')
-                SetVehicleHasBeenOwnedByPlayer(veh, true)
-                SetEntityAsMissionEntity(veh, true, true)
-                TaskWarpPedIntoVehicle(ped, veh, -1)
+                SetVehicleNumberPlateText(veh, 'CREATORV')
             end
         end, model, vec)
     end,
