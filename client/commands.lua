@@ -87,8 +87,6 @@ lib.callback.register('basic:commands:coords', function()
     return vec
 end)
 
-
-
 lib.addRadialItem({
     id = 'commands',
     label = 'Commands',

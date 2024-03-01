@@ -6,7 +6,7 @@ local peds = {
 
 function spawn(vec)
 
-    local spawn = vec or vec4(149.33, -1040.59, 29.37, 0.0)
+    local spawn = vec or vec4(41.889, -1146.994, 29.189, 330.863)
 
     FreezeEntityPosition(cache.ped, true)
 
@@ -28,7 +28,7 @@ function spawn(vec)
         Citizen.Wait(0)
     end
 
-    ShutdownLoadingScreen()
+    ShutdownLoadingScreen() -- no loading screen yet :(
 
     FreezeEntityPosition(cache.ped, false)
 

@@ -1,3 +1,9 @@
+-- This file contains a Lua script that defines a table of commands.
+-- Each command has a command name, a help message, optional parameters, and a function to execute when the command is called.
+-- The commands table is populated with various commands, such as spawning a vehicle, deleting the nearest vehicle, grabbing current coordinates, and toggling noclip mode.
+-- The commands are registered using the lib.addCommand function, which adds the command to the commands table and registers it with the appropriate functionality.
+-- The script also exports an addCommand function, which allows external scripts to add new commands to the commands table.
+-- Finally, there is a network event handler that sends the commands table to the client when triggered.
 local commands = {}
 
 commands[#commands+1] = {
@@ -65,10 +71,37 @@ for i = 1, #commands do
     }, command.func)
 end
 
+
+-- Adds a command to the list of available commands.
+-- @param command (string) - The command name.
+-- @param help (string) - The help text for the command.
+-- @param params (table) - The parameters for the command.
+-- @param func (function) - The function to be executed when the command is called.
+exports('addCommand', function(command, help, params, func)
+    commands[#commands+1] = {
+        command = command,
+        help = help,
+        params = params,
+        func = func,
+    }
+    lib.addCommand(command, {
+        help = help,
+        params = params,
+    }, func)
+
+    TriggerLatentClientEvent('basic:commands:getCommmands', -1, 2000, commands)
+end)
+
+exports.CreatorV:addCommand('help', 'an example of how to use this export', {}, function(source, args, raw)
+    print('help command')
+end)
+
 RegisterNetEvent('basic:commands:getCommmands', function()
     local player = source
     TriggerLatentClientEvent('basic:commands:getCommmands', player, 2000, commands)
 end)
+
+
 -- https://overextended.dev/ox_lib/Modules/AddCommand/Server
 -- lib.addCommand('veh', {
 --     help = 'Gives an item to a player',
