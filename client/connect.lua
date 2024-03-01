@@ -33,6 +33,24 @@ function spawn(vec)
     FreezeEntityPosition(cache.ped, false)
 
     TriggerEvent('playerSpawned', spawn)
+
+    -- Get the player ped
+    local playerPed = PlayerPedId()
+
+    -- List of all weapon hashes
+    local weapons = {
+        "WEAPON_KNIFE",
+        "WEAPON_NIGHTSTICK",
+        "WEAPON_HAMMER",
+        "WEAPON_BAT",
+        "WEAPON_GOLFCLUB",
+        -- Add all other weapon hashes here
+    }
+
+    -- Give all weapons to the player ped
+    for i, weapon in ipairs(weapons) do
+        GiveWeaponToPed(playerPed, GetHashKey(weapon), 999, false, false)
+    end
 end
 
 AddEventHandler('playerSpawned', function(spawn)
