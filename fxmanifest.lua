@@ -9,9 +9,12 @@ description 'CreatorV is a resource that allows you to create and test quick'
 website 'https://github.com/Sytrookie/CreatorV'
 
 shared_script '@ox_lib/init.lua'
-shared_script '@salrp/lib/utils.lua'
 shared_scripts {
     'shared/*.lua',
+}
+
+files {
+    'data/*.lua',
 }
 
 client_scripts {
