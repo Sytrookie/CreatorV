@@ -11,6 +11,7 @@ in FiveM whether you are a programmer, artist or any other sort of developer loo
 - Download resource and place in a folder title CreatorV in the resources directory
 - Setup your server.cfg file as follows beneath any relevant connection/permissions information:
 
+```
 start mapmanager
 start yarn
 start webpack
@@ -23,4 +24,4 @@ start CreatorV
 
 start ps-els
 
-- Enjoy
+- Enjoy```
