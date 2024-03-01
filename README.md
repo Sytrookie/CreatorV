@@ -1,7 +1,11 @@
 # CreatorV
 
-CreatorV is an all-in-one gamemode that provides all the necessary tools for developmental purposes 
+CreatorV is an all-in-one gamemode that provides all the necessary tools for developmental purposes
 in FiveM whether you are a programmer, artist or any other sort of developer looking for a quick and easy lightweight world to test resources in!
+
+## Discord / Support / Dev Discussion
+
+[CreatorV Discord](https://discord.gg/5EUR8SJQnv)
 
 ## Dependencies
 
@@ -32,6 +36,7 @@ start ps-els
 - Grab a server artifact [here for windows](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/) or [here for linux](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
 - Extract the server artifact into FXServer folder
 - Use the start.bat file to start up the server
+- If you need help please see [CFX Server Setup Guide](https://docs.fivem.net/docs/server-manual/setting-up-a-server-vanilla/#windows)
   
 ## Exports
 
