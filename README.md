@@ -11,11 +11,13 @@ in FiveM whether you are a programmer, artist or any other sort of developer loo
 
 - fxserver artifact 7290+
 - onesync
-- ox_lib
+- [ox_lib](https://github.com/overextended/ox_lib)
+- [interact](https://github.com/darktrovx/interact)
 
 ## Installation
 
 - Clone the repo (I update a lot) and place in a folder titled CreatorV in the resources directory
+- Get the resources listed above under Dependencies
 - Setup your server.cfg file as follows beneath any relevant connection/permissions information:
 
 ```
@@ -27,9 +29,8 @@ start sessionmanager
 start fivem
 
 start ox_lib
+start interact
 start CreatorV
-
-start ps-els
 ```
 
 - The resource comes with a start-up batch file to skip TxAdmin as it is not needed for this package and in the interest of simplicity, time, usability...

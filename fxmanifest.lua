@@ -28,6 +28,7 @@ server_scripts {
 
 dependencies {
     'ox_lib',
+    'interact',
     '/server:7290',
     '/onesync',
 }
