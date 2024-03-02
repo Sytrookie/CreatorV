@@ -7,16 +7,11 @@ local peds = {
 function spawn(vec)
 
 
-    local spawn = vec or vec4(41.889, -1146.994, 29.189, 330.863)
-
-    print(spawn)
+    local spawn = vec or vec4(-178.145, -164.105, 44.032, 160.695)
 
     if IsEntityDead(cache.ped) then
         NetworkResurrectLocalPlayer(spawn.x , spawn.y, spawn.z, true, true, false)
     end
-
-
-    FreezeEntityPosition(cache.ped, true)
 
     local pedmodel = peds[math.random(1, #peds)]
     lib.requestModel(pedmodel)
@@ -27,14 +22,18 @@ function spawn(vec)
 
     SetEntityCoordsNoOffset(cache.ped, spawn.x, spawn.y, spawn.z, false, false, false, true)
     SetEntityHeading(cache.ped, spawn.w)
-
-    ClearPedTasksImmediately(cache.ped)
+    
+    FreezeEntityPosition(cache.ped, true)
 
     local time = GetGameTimer()
-
     while (not HasCollisionLoadedAroundEntity(cache.ped) and (GetGameTimer() - time) < 5000) do
-        Citizen.Wait(0)
+        Wait(0)
     end
+
+    SetEntityCoordsNoOffset(cache.ped, spawn.x, spawn.y, spawn.z, false, false, false, true)
+    SetEntityHeading(cache.ped, spawn.w)
+
+    ClearPedTasksImmediately(cache.ped)
 
     ShutdownLoadingScreen() -- no loading screen yet :(
 
