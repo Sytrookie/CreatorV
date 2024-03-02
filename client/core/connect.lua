@@ -40,6 +40,8 @@ function spawn(vec)
     FreezeEntityPosition(cache.ped, false)
 
     TriggerEvent('playerSpawned', spawn)
+
+    LocalPlayer.state:set('basic:connect:first_spawn', true, true)
 end
 
 AddEventHandler('playerSpawned', function(spawn)
@@ -47,7 +49,9 @@ AddEventHandler('playerSpawned', function(spawn)
 end)
 
 SetTimeout(500, function()
-    spawn()
+    if not LocalPlayer.state['basic:connect:first_spawn'] then
+        spawn()
+    end
     LocalPlayer.state:set('basic:died', false, true)
     while true do
         Wait(1000)
