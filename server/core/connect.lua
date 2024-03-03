@@ -3,6 +3,10 @@ AddEventHandler('playerJoining', function()
     print('joined', player, GetPlayerName(player))
 end)
 
+AddEventHandler('basic:COMMANDS:playerSpawned', function()
+
+end)
+
 AddStateBagChangeHandler('basic:died', nil, function(bagName, key, value)
     local source = GetPlayerFromStateBagName(bagName)
     if entity == 0 then return end
