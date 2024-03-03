@@ -6,10 +6,6 @@ local peds = {
 
 function spawn(vec)
 
-    if not LocalPlayer.state['basic:connect:first_spawn'] then
-        LocalPlayer.state:set('basic:connect:first_spawn', true, true)
-    end
-
     local spawn = vec or vec4(-178.145, -164.105, 44.032, 160.695)
 
     if IsEntityDead(cache.ped) then
@@ -43,6 +39,7 @@ function spawn(vec)
     FreezeEntityPosition(cache.ped, false)
 
     TriggerEvent('playerSpawned', spawn)
+    
 
 end
 
@@ -51,7 +48,7 @@ AddEventHandler('playerSpawned', function(spawn)
 end)
 
 SetTimeout(500, function()
-    if not LocalPlayer.state['basic:connect:first_spawn'] then
+    if LocalPlayer.state['basic:connect:first_spawn'] then
         spawn()
     end
     LocalPlayer.state:set('basic:died', false, true)

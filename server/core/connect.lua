@@ -1,10 +1,12 @@
 AddEventHandler('playerJoining', function()
     local player = source
     print('joined', player, GetPlayerName(player))
+    Player(player).state['basic:connect:first_spawn'] = true
 end)
 
-AddEventHandler('basic:COMMANDS:playerSpawned', function()
-
+RegisterNetEvent('basic:COMMANDS:playerSpawned', function()
+    local player = source
+    Player(player).state['basic:connect:first_spawn'] = false
 end)
 
 AddStateBagChangeHandler('basic:died', nil, function(bagName, key, value)

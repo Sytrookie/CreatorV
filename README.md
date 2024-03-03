@@ -47,4 +47,8 @@ exports.CreatorV:addCommand('help', 'Help', 'an example of how to use this expor
 end)
 ```
 
+## Notes
+
+- Resource is intended to be restartable at any point without any trouble, if this changes will indicate
+
 ### Enjoy

@@ -52,7 +52,13 @@ end)
 
 RegisterNetEvent('CreatorV:COMMANDS:getCommands', function()
     local player = source
-    TriggerLatentClientEvent('CreatorV:COMMANDS:getCommands', player, 2000, msgpack.pack(COMMANDS))
+    for i = 1, #COMMANDS do
+        print('send command', COMMANDS[i].command, COMMANDS[i].category, COMMANDS[i].help, i, '# of COMMANDS', #COMMANDS)
+        SetTimeout(1000, function()
+            TriggerLatentClientEvent('CreatorV:COMMANDS:getCommand', player, 2000, msgpack.pack(COMMANDS[i]))
+        end)
+    end
+    -- TriggerLatentClientEvent('CreatorV:COMMANDS:getCommands', player, 2000, msgpack.pack(COMMANDS))
 end)
 
 
