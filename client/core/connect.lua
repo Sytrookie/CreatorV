@@ -6,6 +6,9 @@ local peds = {
 
 function spawn(vec)
 
+    if not LocalPlayer.state['basic:connect:first_spawn'] then
+        LocalPlayer.state:set('basic:connect:first_spawn', true, true)
+    end
 
     local spawn = vec or vec4(-178.145, -164.105, 44.032, 160.695)
 
@@ -41,7 +44,6 @@ function spawn(vec)
 
     TriggerEvent('playerSpawned', spawn)
 
-    LocalPlayer.state:set('basic:connect:first_spawn', true, true)
 end
 
 AddEventHandler('playerSpawned', function(spawn)
