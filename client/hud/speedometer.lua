@@ -3,6 +3,8 @@ local MPH = 0
 local KMH = 0
 local speedstring = "0"
 local first_start = true
+local vehHealth = 0
+local vehFuel = 0
 
 local function speedoText(x,y, text)
     SetTextFont(FONTS['digital7'])
@@ -38,12 +40,17 @@ function speedoThreads(value)
                 else
                     speedstring = string.format("00%.0f", MPH)
                 end
+
+                vehHealth = GetVehicleEngineHealth(cache.vehicle)
+                vehFuel = GetVehicleFuelLevel(cache.vehicle)
             end
         end)
         CreateThread(function()
             while cache.vehicle and cache.vehicle == value do
                 Wait(FRAMETIME * 10)
                 speedoText(0.185, 0.9, speedstring)
+                sprogBar(0.185, 0.95, vehHealth, 1000.0, 0.5)
+                sprogBar(0.225, 0.95, vehFuel, 100.0, 0.5, '#FFA500', '#4682B4')
             end
         end)
     end
