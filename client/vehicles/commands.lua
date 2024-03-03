@@ -27,3 +27,34 @@ lib.callback.register('basic:COMMANDS:spawnVehicle', function(model, coords)
     local veh, net = spawnVehicle(model, coords)
     return veh, net
 end)
+
+lib.callback.register('CreatorV:vehicles:list', function()
+    local vehicles = GetAllVehicleModels()
+    local vehicleNames = {}
+    for i = 1, #vehicles do
+        local model = vehicles[i]
+        local name = GetLabelText(GetDisplayNameFromVehicleModel(model))
+        table.insert(vehicleNames, {name = name, model = model})
+    end
+
+    table.sort(vehicleNames, function(a, b)
+        return a.name < b.name
+    end)
+
+    local opts = {}
+
+    for i = 1, #vehicleNames do
+        table.insert(opts, {label = vehicleNames[i].name, value = vehicleNames[i].model})
+    end
+
+    local input = lib.inputDialog('Vehicles', {
+        {type = 'select', label = 'Vehicle Model', options = opts, default = 'taxi'},
+    })
+    print(input, input[1])
+
+    if input and input[1] then
+        local coords = GetEntityCoords(cache.ped)
+        local veh, net = spawnVehicle(input[1], coords)
+        return veh, net
+    end
+end)

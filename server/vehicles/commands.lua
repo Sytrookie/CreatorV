@@ -29,3 +29,9 @@ addCommand('vehmods', 'Vehicles', 'Opens a vehicle garage mode menu for customiz
         
     end)
 end)
+
+addCommand('vehicles', 'Vehicles', 'Lists all vehicles', {}, function(source, args, raw)
+    lib.callback('CreatorV:vehicles:list', source, function()
+        
+    end)
+end)
