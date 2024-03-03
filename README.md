@@ -14,24 +14,16 @@ in FiveM whether you are a programmer, artist or any other sort of developer loo
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [interact](https://github.com/darktrovx/interact)
 
+## Recommended
+- [bob74_ipl](https://github.com/TayMcKenzieNZ/bob74_ipl/tree/6a8323ab3336983af616486c6c579cde84b28633)
+- [online-interiors](https://github.com/TayMcKenzieNZ/online-interiors)
+
 ## Installation
 
 - Clone the repo (I update a lot) and place in a folder titled CreatorV in the resources directory
 - Get the resources listed above under Dependencies
-- Setup your server.cfg file as follows beneath any relevant connection/permissions information:
+- See CreatorV.cfg for how to setup your server.cfg file
 
-```
-start mapmanager
-start yarn
-start webpack
-start chat
-start sessionmanager
-start fivem
-
-start ox_lib
-start interact
-start CreatorV
-```
 
 - The resource comes with a start-up batch file to skip TxAdmin as it is not needed for this package and in the interest of simplicity, time, usability...
 - Grab a server artifact [here for windows](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/) or [here for linux](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
