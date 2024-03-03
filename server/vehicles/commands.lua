@@ -23,3 +23,9 @@ addCommand('dv', 'Vehicles', 'Deletes nearest vehicle', {}, function(source, arg
         DeleteEntity(v)
     end
 end)
+
+addCommand('vehmods', 'Vehicles', 'Opens a vehicle garage mode menu for customization or your sick hot rod', {}, function(source, args, raw)
+    lib.callback('CreatorV:vehiclemods:client:openMenu', source, function()
+        
+    end)
+end)
