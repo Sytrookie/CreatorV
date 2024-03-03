@@ -23,7 +23,7 @@ function spawnVehicle(model, coords)
     return veh, VehToNet(veh)
 end
 
-lib.callback.register('basic:commands:spawnVehicle', function(model, coords)
+lib.callback.register('basic:COMMANDS:spawnVehicle', function(model, coords)
     local veh, net = spawnVehicle(model, coords)
     return veh, net
 end)

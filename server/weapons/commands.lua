@@ -1,0 +1,5 @@
+addCommand('weap_all', 'Weapons', 'Gives all weapons', {}, function(source, args, raw)
+    lib.callback('basic:COMMANDS:weap_all', source, function()
+        print(source, GetPlayerName(source), 'weap_all')
+    end)
+end)

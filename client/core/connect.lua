@@ -45,7 +45,7 @@ function spawn(vec)
 end
 
 AddEventHandler('playerSpawned', function(spawn)
-    TriggerServerEvent('basic:commands:playerSpawned')
+    TriggerServerEvent('basic:COMMANDS:playerSpawned')
 end)
 
 SetTimeout(500, function()
@@ -56,7 +56,6 @@ SetTimeout(500, function()
     while true do
         Wait(1000)
         if cache.ped then
-            print(LocalPlayer.state['basic:died'] and GetCloudTimeAsInt() - tonumber(LocalPlayer.state['basic:died']))
             if (LocalPlayer.state['basic:died'] and (GetCloudTimeAsInt() - LocalPlayer.state['basic:died'] > 2)) or respawnForced then
                 local coords = GetEntityCoords(cache.ped)
                 local heading = GetEntityHeading(cache.ped)

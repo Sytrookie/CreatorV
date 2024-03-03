@@ -48,9 +48,9 @@ start CreatorV
 - Registers a command and follows ox_lib command structure, processes the commands into a global radial menu accessible via hotkey.
   
 ```lua
-exports.CreatorV:addCommand(command, help, params, func)
+exports.CreatorV:addCommand(command, category, help, params, func)
 
-exports.CreatorV:addCommand('help', 'an example of how to use this export', {}, function(source, args, raw)
+exports.CreatorV:addCommand('help', 'Help', 'an example of how to use this export', {}, function(source, args, raw)
     print('help command')
 end)
 ```

@@ -6,53 +6,17 @@
 -- Finally, there is a network event handler that sends the COMMANDS table to the client when triggered.
 COMMANDS = {}
 
-COMMANDS[#COMMANDS+1] = {
-    command = 'coords',
-    help = 'Grabs current coordinates',
-    func = function(source, args, raw)
-        lib.callback('basic:COMMANDS:coords', source, function(coords)
-           print(source, GetPlayerName(source), 'coords', coords)
-        end)
-    end,
-}
-
-COMMANDS[#COMMANDS+1] = {
-    command = 'noclip',
-    help = 'Toggle noclip',
-    func = function(source, args, raw)
-        lib.callback('basic:noclip:toggle', source, function()
-            print(source, GetPlayerName(source), 'noclip')
-        end)
-    end,
-}
-
-COMMANDS[#COMMANDS+1] = {
-    command = 'weap_all',
-    help = 'Gives all weapons',
-    func = function(source, args, raw)
-        lib.callback('basic:COMMANDS:weap_all', source, function()
-            print(source, GetPlayerName(source), 'weap_all')
-        end)
-    end,
-}
-
-for i = 1, #COMMANDS do
-    local command = COMMANDS[i]
-    lib.addCommand(command.command, {
-        help = command.help,
-        params = command.params,
-    }, command.func)
-end
-
-
 -- Adds a command to the list of available COMMANDS.
 -- @param command (string) - The command name.
+-- @param category (string) -- The category of the command.
 -- @param help (string) - The help text for the command.
 -- @param params (table) - The parameters for the command.
 -- @param func (function) - The function to be executed when the command is called.
-exports('addCommand', function(command, help, params, func)
-    COMMANDS[#COMMANDS+1] = {
+function addCommand(command, category, help, params, func)
+    local id = #COMMANDS+1
+    COMMANDS[id] = {
         command = command,
+        category = category,
         help = help,
         params = params,
         func = func,
@@ -62,16 +26,33 @@ exports('addCommand', function(command, help, params, func)
         params = params,
     }, func)
 
-    TriggerLatentClientEvent('basic:COMMANDS:getCommmands', -1, 2000, COMMANDS)
+    print('send command', command, category, help, id, '# of COMMANDS', #COMMANDS)
+    SetTimeout(1000, function()
+        TriggerLatentClientEvent('CreatorV:COMMANDS:getCommand', -1, 2000, msgpack.pack(COMMANDS[id]))
+    end)
+end
+exports('addCommand', addCommand)
+
+addCommand('coords', 'Core', 'Grabs current coordinates', {}, function(source, args, raw)
+    lib.callback('basic:COMMANDS:coords', source, function(coords)
+       print(source, GetPlayerName(source), 'coords', coords)
+    end)
 end)
 
-exports.CreatorV:addCommand('help', 'an example of how to use this export', {}, function(source, args, raw)
-    print('help command')
+addCommand('noclip', 'Core', 'Toggle noclip', {}, function(source, args, raw)
+    lib.callback('basic:noclip:toggle', source, function()
+        print(source, GetPlayerName(source), 'noclip')
+    end)
 end)
 
-RegisterNetEvent('basic:COMMANDS:getCommmands', function()
+-- example export command
+-- exports.CreatorV:addCommand('help', 'an example of how to use this export', {}, function(source, args, raw)
+--     print('help command')
+-- end)
+
+RegisterNetEvent('CreatorV:COMMANDS:getCommands', function()
     local player = source
-    TriggerLatentClientEvent('basic:COMMANDS:getCommmands', player, 2000, COMMANDS)
+    TriggerLatentClientEvent('CreatorV:COMMANDS:getCommands', player, 2000, msgpack.pack(COMMANDS))
 end)
 
 
