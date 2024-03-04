@@ -1,0 +1,1 @@
+SetCanAttackFriendly(cache.ped, true, false)
