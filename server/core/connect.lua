@@ -6,6 +6,7 @@ end)
 
 RegisterNetEvent('basic:COMMANDS:playerSpawned', function()
     local player = source
+    Wait(5000)
     Player(player).state['basic:connect:first_spawn'] = false
 end)
 
