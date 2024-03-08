@@ -7,18 +7,36 @@ in FiveM whether you are a programmer, artist or any other sort of developer loo
 
 [CreatorV Discord](https://discord.gg/5EUR8SJQnv)
 
-## Dependencies
+## Features
+
+- Quick and easy spawn handler with no frills
+- FPS Counter
+- Basic vehicle HUD (Speedometer, Health, Fuel)
+- Dynamic commands handler using global radial menu
+- Basic vehicle, weapon commands you would expect
+- Debugger with client/server support to overlay debug information
+- Vehicle list with a spawn action
+- Teleport instantly to any spot you set as waypoint on the map
+- Optimized to reduce loading time
+- Native built UI elements for speed
+- Scaling thread updates to focus on framerate
+- Good examples of how to utilize native ui elements
+- Support for other resources to utilize CreatorV functions for development tools
+  
+## Installation
+
+### Dependencies
 
 - fxserver artifact 7290+
 - onesync
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [interact](https://github.com/darktrovx/interact)
 
-## Recommended
+### Recommended
 - [bob74_ipl](https://github.com/TayMcKenzieNZ/bob74_ipl/tree/6a8323ab3336983af616486c6c579cde84b28633)
 - [online-interiors](https://github.com/TayMcKenzieNZ/online-interiors)
 
-## Installation
+### Installation
 
 - Clone the repo (I update a lot) and place in a folder titled CreatorV in the resources directory
 - Get the resources listed above under Dependencies
