@@ -33,15 +33,15 @@ in FiveM whether you are a programmer, artist or any other sort of developer loo
 - [interact](https://github.com/darktrovx/interact)
 
 ### Recommended
+
 - [bob74_ipl](https://github.com/TayMcKenzieNZ/bob74_ipl/tree/6a8323ab3336983af616486c6c579cde84b28633)
 - [online-interiors](https://github.com/TayMcKenzieNZ/online-interiors)
 
-### Installation
+### Instructions
 
 - Clone the repo (I update a lot) and place in a folder titled CreatorV in the resources directory
 - Get the resources listed above under Dependencies
 - See CreatorV.cfg for how to setup your server.cfg file
-
 
 - The resource comes with a start-up batch file to skip TxAdmin as it is not needed for this package and in the interest of simplicity, time, usability...
 - Grab a server artifact [here for windows](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/) or [here for linux](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
